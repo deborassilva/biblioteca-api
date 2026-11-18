@@ -1,0 +1,82 @@
+openapi: 3.0.3
+info:
+  title: API da Biblioteca
+  version: 1.0.0
+  description: Fluxo principal de empréstimo e devolução de livros.
+servers:
+  - url: http://localhost:3000
+paths:
+  /emprestimos:
+    post:
+      summary: Empresta um livro a um usuário
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NovoEmprestimo'
+      responses:
+        '201':
+          description: Empréstimo criado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Emprestimo'
+        '400':
+          description: Dados inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Erro'
+        '404':
+          description: Livro não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Erro'
+        '409':
+          description: Livro indisponível ou limite de empréstimos atingido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Erro'
+components:
+  schemas:
+    NovoEmprestimo:
+      type: object
+      required: [usuarioId, livroId]
+      properties:
+        usuarioId:
+          type: string
+          example: ana
+        livroId:
+          type: string
+          example: '1'
+    Emprestimo:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        usuarioId:
+          type: string
+        livroId:
+          type: string
+        emprestadoEm:
+          type: string
+          format: date-time
+        devolverAte:
+          type: string
+          format: date-time
+        devolvidoEm:
+          type: string
+          format: date-time
+          nullable: true
+    Erro:
+      type: object
+      properties:
+        erro:
+          type: string
+          example: LIVRO_INDISPONIVEL
+        mensagem:
+          type: string

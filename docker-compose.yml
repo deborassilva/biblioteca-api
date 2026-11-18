@@ -1,0 +1,15 @@
+services:
+  api:
+    build: .
+    ports:
+      - "${PORT:-3000}:${PORT:-3000}"
+    environment:
+      PORT: ${PORT:-3000}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      LIMITE_EMPRESTIMOS: ${LIMITE_EMPRESTIMOS:-3}
+      PRAZO_DIAS: ${PRAZO_DIAS:-14}
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:${PORT:-3000}/saude"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
