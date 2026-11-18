@@ -1,6 +1,5 @@
 # Desempenho
 
-> **PREENCHER com a medição real.** Rode o k6 e copie os números da saída. Não invente valores.
 
 ## Como medir
 
@@ -17,11 +16,16 @@ k6 run k6/smoke.js
 
 | Métrica | Valor |
 |---|---|
-| Requisições totais | _(copiar do k6)_ |
-| p95 de `http_req_duration` | _(copiar do k6)_ ms |
-| Taxa de falhas | _(copiar do k6)_ |
+| Requisições totais | 2059 |
+| Taxa de requisições | 68,4 req/s |
+| Taxa de falhas | 0,00% (0 de 2059) |
+| Duração média | 1,65 ms |
+| Mediana | 1,22 ms |
+| p90 | 2,93 ms |
+| **p95 de `http_req_duration`** | **4,11 ms** |
+| Máximo | 11,86 ms |
 
-Data e máquina da medição: _(preencher)_
+Data e máquina da medição: 18/11/2026, GitHub Codespaces (2 núcleos), API rodando via `docker compose up`.
 
 ## SLO
 

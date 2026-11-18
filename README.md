@@ -82,4 +82,4 @@ src/
 ## CI
 
 GitHub Actions (`.github/workflows/ci.yml`): `npm ci`, `npm run lint`, `npm test`.
-Link da execução verde: _(colar aqui depois do primeiro CI verde)_
+Link da execução verde: https://github.com/deborassilva/biblioteca-api/actions/runs/44370457810
